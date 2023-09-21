@@ -1,4 +1,18 @@
 
+function encontrarElementoUnico(arr) {
+    try{
+  for (let i = 0; i < arr.length; i++) {
+    let elemento = arr[i];
+    if (arr.indexOf(elemento) === arr.lastIndexOf(elemento)) {
+
+      return elemento;
+    }
+  } 
+  return null; // Si no hay un elemento único
+}catch(e){
+    console.log('error en la funcion ')
+}
+}
 
 
 
@@ -28,7 +42,8 @@ function getPhoneColumns(phoneArray){
     let itemSizzeTwo=0;
     let sizze=phoneArray.length;
     let itemSizzeThree=0;
-    
+    const arrayList=[];
+    let resultado = encontrarElementoUnico();
     if(sizze == 1){
         allContentOne=phoneArray[0].split('|').toString();
         itemSizze= phoneArray[0].split('|').length;
@@ -139,16 +154,29 @@ function getPhoneColumns(phoneArray){
                             allNames.push(index2ElementTwo);
                             phoneColumns.push({"columnName":index2ElementTwo,"type": "Móvil"});
                         }
+                        arrayList.push(index2ElementThree,elementOne,elementTwo)
+                        resutlado=encontrarElementoUnico(arrayList);
+                        if(resutlado !== null){
+                            allNames.push(resutlado);
+                            phoneColumns.push({"columnName":resutlado,"type": "Móvil"});
+
+                        }
                      
 
                     }else if(index2ElementTwo != index2ElementOne && index2ElementTwo != elementOne && index2ElementTwo != elementTwo){
                         console.log('case largo  8 index2ElementTwo es unico almacenando ! ');
                         allNames.push(index2ElementTwo);
                         phoneColumns.push({"columnName":index2ElementTwo,"type": "Móvil"});                        
-                        if(index2ElementOne == index2ElementThree && index2ElementOne == elementOne && index2ElementOne == elementTwo && !allNames.includes(index2ElementOne)){
+                        if(index2ElementOne ==  elementOne && index2ElementOne == elementTwo && !allNames.includes(index2ElementOne)){
                             allNames.push(index2ElementOne);
                             phoneColumns.push({"columnName":index2ElementOne,"type": "Móvil"});
                         }
+                        arrayList.push(elementOne,elementTwo );
+                        resultado=encontrarElementoUnico(arrayList);
+                        if(resutlado !== null){
+                            allNames.push(resutlado)
+                            ;phoneColumns.push({"columnName":resutlado,"type": "Móvil"})
+                        };
                     }else if(elementOne != elementTwo && elementOne != index2ElementOne && elementOne != index2ElementTwo){
                         console.log('case largo  8 elemnto one  es unico almacenando ! ');
                         allNames.push(elementOne);
@@ -157,6 +185,13 @@ function getPhoneColumns(phoneArray){
                             allNames.push(elementTwo);
                             phoneColumns.push({"columnName":elementTwo,"type": "Móvil"})
                         }
+                        arrayList.push(index2ElementOne,index2ElementTwo);
+                        resultado=encontrarElementoUnico(arrayList);
+                        if(resultado !== null){
+                            allNames.push(resultado);
+                            phoneColumns.push({"columnName":resultado,"type": "Móvil"});
+                        }
+                    
                     }else if(elementTwo != elementOne && elementTwo != index2ElementOne && elementTwo !=index2ElementTwo){
                         console.log('case largo  8 element Two  es unico almacenando ! ');
                         allNames.push(elementTwo);
@@ -164,6 +199,12 @@ function getPhoneColumns(phoneArray){
                         if(index2ElementOne == index2ElementTwo && index2ElementOne == elementOne){
                             allNames.push(index2ElementOne);
                             phoneColumns.push({"columnName":index2ElementOne,"type": "Móvil"});
+                        }
+                        arrayList.push(elementOne,index2ElementTwo);
+                        resultado=encontrarElementoUnico(arrayList);
+                        if(resultado !== null){
+                            allNames.push(resultado);
+                            phoneColumns.push({"columnName":resultado,"type": "Móvil"});
                         }
                     }else{
                         console.log('Todos los elementos son iguales ! ');
@@ -176,11 +217,20 @@ function getPhoneColumns(phoneArray){
                     
                     if(elementOne != elementTwo && elementOne != elementThree && elementOne != index2ElementOne && elementOne !=index2ElementTwo && elementOne != index2ElementThree ){
                         console.log(' case length 10  ELEMENTO ONE ES UNICO ! ');
+                        console.log('Elemento almacenado ! ELEMENT ONE  = '+elementOne);
                         allNames.push(elementOne);//
                         phoneColumns.push({"columnName":elementOne,"type": "Móvil"});
                         if(elementThree == elementTwo  && elementThree == index2ElementOne && elementThree == index2ElementTwo && elementThree == index2ElementThree){
                             allNames.push(elementThree);
-                            phoneColumns.push({"columnName":elementThree,"type": "Móvil"})
+                            phoneColumns.push({"columnName":elementThree,"type": "Móvil"});
+                            console.log('Elemento almacenado !  ELEMENT THEREE  = '+elementThree);
+                        }
+                        arrayList.push(elementTwo,index2ElementOne,index2ElementTwo,index2ElementThree);
+                        resultado=encontrarElementoUnico(arrayList);
+                        if(resultado !== null){
+                            console.log('Almacenando el siguiente elemento ! = resultado = '+resultado);
+                            allNames.push(resultado);
+                            phoneColumns.push({"columnName":resultado,"type": "Móvil"})
                         }
                         
                     }else if(elementTwo != elementOne && elementTwo != elementThree && elementTwo != index2ElementOne && elementTwo != index2ElementTwo && elementTwo != index2ElementThree){
@@ -190,14 +240,30 @@ function getPhoneColumns(phoneArray){
                         if(elementOne == elementThree && elementOne == index2ElementOne && elementOne == index2ElementTwo && elementOne == index2ElementThree){
                             allNames.push(elementOne);
                             phoneColumns.push({"columnName":elementOne,"type": "Móvil"})
+                                                        
+                        };
+                        arrayList.push(elementThree,index2ElementOne,index2ElementTwo,index2ElementThree);
+                        resultado = encontrarElementoUnico(arrayDatos);
+                        if(resultado !== null){
+                            allNames.push(resultado);
+                            phoneColumns.push({"columnName":resultado,"type": "Móvil"});
                         }
+                        
+                        
                     } else if(elementThree != elementOne && elementThree != elementTwo && elementThree != index2ElementOne && elementThree != index2ElementTwo && elementThree != index2ElementThree){
                         console.log(' case length 10  ELEMENTO Three ES UNICO ! ');
                         allNames.push(elementThree);//
                         phoneColumns.push({"columnName":elementThree,"type": "Móvil"});
                         if(elementOne == elementTwo  && elementOne  == index2ElementOne && elementOne == index2ElementTwo && index2ElementTwo && elementOne == index2ElementThree){
                             allNames.push(elementOne);
-                            phoneColumns.push({"columnName":elementOne,"type": "Móvil"})
+                            phoneColumns.push({"columnName":elementOne,"type": "Móvil"});
+                           
+                        }
+                        arrayList.push(elementTwo,index2ElementOne,index2ElementTwo,index2ElementThree);
+                        resultado = encontrarElementoUnico(arrayList);
+                        if(resultado !== null){
+                            allNames.push(resultado);
+                            phoneColumns.push({"columnName":resultado,"type": "Móvil"});
                         }
                     }else if(index2ElementOne != elementOne && index2ElementOne != elementTwo && index2ElementOne != elementThree && index2ElementOne != index2ElementTwo && index2ElementOne !=index2ElementThree){
                         console.log(' case length 10  index2element one ES UNICO ! ');
@@ -207,6 +273,12 @@ function getPhoneColumns(phoneArray){
                             allNames.push(elementThree);
                             phoneColumns.push({"columnName":elementThree,"type": "Móvil"}) 
                         }
+                        arrayList.push(elementOne,elementTwo,index2ElementTwo,index2ElementThree);
+                        resultado = encontrarElementoUnico(arrayDatos);
+                        if(resultado !== null){
+                            allNames.push(resultado);
+                            phoneColumns.push({"columnName":resultado,"type": "Móvil"});
+                        };
 
                     }else if(index2ElementTwo != elementOne && index2ElementTwo != elementTwo && index2ElementTwo != elementThree && index2ElementTwo != index2ElementOne && index2ElementTwo != index2ElementThree){
                         console.log(' case length 10  index2element TWO ES UNICO ! ');
@@ -215,6 +287,12 @@ function getPhoneColumns(phoneArray){
                         if(index2ElementOne == index2ElementThree && index2ElementOne == elementOne && index2ElementOne == elementTwo && index2ElementOne == elementThree){
                             allNames.push(index2ElementOne);
                             phoneColumns.push({"columnName":index2ElementOne,"type": "Móvil"});
+                        };
+                        arrayList.push(index2ElementThree,elementOne,elementTwo,elementThree);
+                        resutlado=encontrarElementoUnico(arrayList);
+                        if(resutlado !== null){
+                            allNames.push(resutlado);
+                            phoneColumns.push({"columnName":resutlado,"type": "Móvil"});
                         }
                     }else if(index2ElementThree != elementOne && index2ElementThree != elementTwo && index2ElementThree != elementThree &&  index2ElementThree != index2ElementOne && index2ElementThree != index2ElementTwo){
                         console.log(' case length 10  index2element Three ES UNICO ! ');
@@ -223,7 +301,13 @@ function getPhoneColumns(phoneArray){
                         if(elementOne == elementTwo && elementOne == elementThree && elementOne == index2ElementOne && elementOne == index2ElementTwo){
                             allNames.push(elementOne);
                             phoneColumns.push({"columnName":elementOne,"type": "Móvil"}); 
-                        };                        
+                        };       
+                        arrayList.push(index2ElementOne,index2ElementTwo,elementTwo,elementThree);
+                        resutlado= encontrarElementoUnico(arrayList);
+                        if(resultado !== null ){
+                            allNames.push(resutlado);
+                            phoneColumns.push({"columnName":resutlado,"type": "Móvil"});
+                        }              
                     }else{
                         console.log('Los valores son iguales guardando solo un valor ! ');
 
@@ -270,6 +354,7 @@ function getPhoneColumns(phoneArray){
                                 allNames.push(elementTwo);
                                 phoneColumns.push({"columnName":elementTwo,"type": "Móvil"});
                             } 
+
                         }else if(elementTwo != elementOne && elementTwo != elementThree ){
                             console.log('El elemento two es unico ! ');
                             allNames.push(elementTwo);
@@ -329,6 +414,7 @@ function getPhoneColumns(phoneArray){
                                 allNames.push(index2ElementTwo);
                                 phoneColumns.push({"columnName":index2ElementTwo,"type": "Móvil"});
                             }
+                    
                         }else if(index2ElementTwo != index2ElementOne && index2ElementTwo != index2ElementThree ){
                             console.log('El elemento two es unico ! ');
                             allNames.push(index2ElementTwo);
@@ -444,7 +530,7 @@ function getPhoneColumns(phoneArray){
                             console.log('El elemento 1 del indice 1  se almacena ! ')
                             allNames.push(elementOne)
                             phoneColumns.push({"columnName":elementOne,"type": "Móvil"});
-                            if(elementTwo==elementThree){
+                            if(elementTwo == elementThree){
                                 allNames.push(elementTwo);
                                 phoneColumns.push({"columnName":elementTwo,"type": "Móvil"});
                             }
@@ -607,7 +693,7 @@ function getPhoneColumns(phoneArray){
     }
     return{ allNames,phoneColumns }; 
 };//case 3 ok
-const arrty=['|Telefono1|Telefono1|Telefono1|','|Telefono1|Telefono1|Telefono2|'];
+const arrty=['|Telefono4|Telefono1|Telefono3|','|Telefono1|Telefono1|Telefono2|'];
 const resutlado=getPhoneColumns(arrty);
 console.log('Entrada = '+arrty)
 console.log(resutlado.allNames);
